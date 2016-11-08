@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<template
+    format="5"
+    revision="5"
+    name="Joy Screen"
+    minApi="9"
+    minBuildApi="14"
+    description="Creates a Joy screen">
+
+    <category value="Joy" />
+
+    <parameter
+        id="packageName"
+        name="Package name"
+        type="string"
+        constraints="package"
+        default="com.mycompany.myapp" />
+
+    <parameter
+        id="screenName"
+        name="Screen Name"
+        type="string"
+        constraints="nonempty"
+        default="Simple" />
+
+    <parameter
+        id="screenClass"
+        name="Screen Class Name"
+        type="string"
+        constraints="class|unique|nonempty"
+        suggest="${extractLetters(screenName)}Screen"
+        default="SimpleScreen"
+        help="The name of the screen class to create" />
+
+    <parameter
+        id="hasInScreen"
+        name="Has InScreen"
+        type="boolean"
+        default="false"
+        help="If true, this screen will extend a InScreen." />
+
+    <parameter
+        id="inScreenClass"
+        name="InScreen Name"
+        type="string"
+        constraints="class|exists"
+        visibility="hasInScreen"
+        help="The InScreen" />
+
+    <parameter
+        id="screenViewClass"
+        name="Screen View Name"
+        type="string"
+        constraints="class|unique|nonempty"
+        suggest="${extractLetters(screenName)}View"
+        default="SimpleView"
+        help="The name of the view to create for the screen" />
+
+    <parameter
+        id="screenViewLayoutName"
+        name="Screen View Layout Name"
+        type="string"
+        constraints="layout|unique|nonempty"
+        suggest="${camelCaseToUnderscore(screenViewClass)}"
+        default="simple_view"
+        help="The name of the layout to create for the screen" />
+
+    <globals file="globals.xml.ftl" />
+    <execute file="recipe.xml.ftl" />
+
+</template>
