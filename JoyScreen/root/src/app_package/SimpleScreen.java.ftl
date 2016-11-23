@@ -6,6 +6,7 @@ import com.joybang.container.LayoutScreen;
 import com.joybang.container.mortarflowglue.WithComponent;
 import com.joybang.dagger.SingleIn;
 import dagger.Subcomponent;
+import flow.Flow;
 import javax.inject.Inject;
 import mortar.ViewPresenter;
 <#if applicationPackage??>
@@ -23,7 +24,9 @@ public abstract class ${screenClass} <#if hasInScreen>extends ${inScreenClass}</
   }
 
   @SingleIn(${screenClass}.class) public static class Presenter extends ViewPresenter<${screenName}View> {
-    @Inject Presenter() {
+    private final Flow flow;
+    @Inject Presenter(Flow flow) {
+      this.flow = flow;
     }
   }
 }
