@@ -20,7 +20,7 @@ public abstract class ${screenClass} <#if hasInScreen>extends ${inScreenClass}</
   }
 
   @Subcomponent @SingleIn(${screenClass}.class) public interface Component {
-    void inject(${screenName}View ${screenName}View);
+    void inject(${screenName}View view);
   }
 
   @SingleIn(${screenClass}.class) public static class Presenter extends ViewPresenter<${screenName}View> {
